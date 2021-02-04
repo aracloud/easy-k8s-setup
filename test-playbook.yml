@@ -1,0 +1,11 @@
+---
+# playbook.yml
+- name: 'Provision VM'
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: install packages
+      package:
+        name: nginx
+        state: present

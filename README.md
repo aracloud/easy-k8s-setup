@@ -11,7 +11,7 @@ Install: vagrant plugin install vagrant-vmware-esxi
 
 ```
 
-Prep ESXi params based on your needs.
+Prep ESXi params based on your needs and bring the k8s cluster alive:
 
 
 ```bash

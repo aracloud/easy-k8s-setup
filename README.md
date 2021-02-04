@@ -1,4 +1,4 @@
-## Easy way to setup k8s cluster on ESXi for lab purposes
+## Easy way to setup a Kubernetes (k8s) cluster on ESXi for lab purposes
 
 Prep Vagrant:
 

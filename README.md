@@ -11,6 +11,8 @@ Install: vagrant plugin install vagrant-vmware-esxi
 
 ```
 
+Prep ESXi params based on your needs.
+
 
 ```bash
 $ vagrant up |tee log.txt

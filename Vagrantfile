@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
 
   # building worker nodes
   workers.each do | (name, cfg) |
-    box, numvcpus, memory, storage, playbook, nodeip = cfg
+    box, numvcpus, memory, storage, playbook, nodeip, macaddr = cfg
 
     config.vm.define name do |machine|
       machine.vm.box = box

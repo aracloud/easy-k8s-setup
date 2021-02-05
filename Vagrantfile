@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
         esxi.guest_memsize = memory
         esxi.guest_numvcpus = numvcpus
         esxi.guest_storage = storage
-        esxi.guest_mac_address = macaddr
+        esxi.guest_mac_address = [ macaddr ]
         esxi.guest_guestos = 'ubuntu-64'
         esxi.guest_nic_type = 'vmxnet3'
         esxi.debug = 'false'
@@ -64,7 +64,7 @@ Vagrant.configure("2") do |config|
         esxi.guest_memsize = memory
         esxi.guest_numvcpus = numvcpus
         esxi.guest_storage = storage
-        esxi.guest_mac_address = macaddr
+        esxi.guest_mac_address = [ macaddr ]
         esxi.guest_guestos = 'ubuntu-64'
         esxi.guest_nic_type = 'vmxnet3'
         esxi.debug = 'false'

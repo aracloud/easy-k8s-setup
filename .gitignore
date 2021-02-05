@@ -3,3 +3,4 @@ join-command
 log.txt
 .vscode/
 .DS_Store
+.esxi_password

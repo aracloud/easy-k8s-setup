@@ -2,12 +2,12 @@
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
 masters = {
-   "uk8s1" => ["generic/ubuntu1804", 2, 3072, 30, "master-playbook.yml", "192.168.2.121", "00:0c:29:aa:aa:aa" ],
+   "uk8s1m" => ["generic/ubuntu1804", 2, 3072, 30, "master-playbook.yml", "192.168.2.121", "00:0c:29:aa:aa:aa" ],
 }
 
 workers = {
-   "uk8s2" => ["generic/ubuntu1804", 2, 3072, 30, "worker-playbook.yml", "192.168.2.122", "00:0c:29:bb:bb:bb" ],
-   "uk8s3" => ["generic/ubuntu1804", 2, 3072, 30, "worker-playbook.yml", "192.168.2.123", "00:0c:29:bb:ab:bb" ],
+   "uk8s2w" => ["generic/ubuntu1804", 2, 3072, 30, "worker-playbook.yml", "192.168.2.122", "00:0c:29:bb:bb:bb" ],
+   "uk8s3w" => ["generic/ubuntu1804", 2, 3072, 30, "worker-playbook.yml", "192.168.2.123", "00:0c:29:bb:ab:bb" ],
 }
 
 Vagrant.configure("2") do |config|
@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
       machine.vm.provider :vmware_esxi do |esxi|
         esxi.esxi_hostname = 'esxi'
         esxi.esxi_username = 'root'
-        esxi.esxi_password = ''
+        esxi.esxi_password = 'file:./.esxi_password'
         esxi.esxi_virtual_network = ['VM Network', 'internal-60']
         esxi.esxi_disk_store = 'datastore'
         esxi.guest_memsize = memory
@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
       machine.vm.provider :vmware_esxi do |esxi|
         esxi.esxi_hostname = 'esxi'
         esxi.esxi_username = 'root'
-        esxi.esxi_password = ''
+        esxi.esxi_password = 'file:./.esxi_password'
         esxi.esxi_virtual_network = ['VM Network', 'internal-60']
         esxi.esxi_disk_store = 'datastore'
         esxi.guest_memsize = memory

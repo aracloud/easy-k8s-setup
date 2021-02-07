@@ -1,6 +1,6 @@
 ## Easy way to setup a Kubernetes (k8s) cluster on ESXi for lab purposes
 
-# Prep ESXI:
+### Prep ESXi:
 Make ssh available and configure ESXi passwordless access as
 described in WWW many times already ;-).
 
@@ -12,7 +12,7 @@ Issues I faced:
 ESXi uses (as far as I understand) 00:0C:29 as vendor mac for ESXi.
 In order to automate VM's I used 00:50:56 instead which works fine for me. 
 
-# Prep Vagrant:
+### Prep Vagrant:
 
 ```bash
 Install vagrant as describe at Hashicorp!
@@ -23,7 +23,7 @@ Install plugin: vagrant plugin install vagrant-vmware-esxi
 
 ```
 
-# Prep ESXi params based on your needs and bring the k8s cluster alive:
+### Prep ESXi params based on your needs and bring the k8s cluster alive:
 
 ```bash
 $ vagrant up |tee log.txt

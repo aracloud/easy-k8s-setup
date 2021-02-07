@@ -93,8 +93,8 @@
         daemon_reload: yes
         state: restarted
 
-    - wait_for:
-        path: /tmp/join-command.sh
+#    - wait_for:
+#        path: /tmp/join-command.sh
 
     - name: Copy the join command to server location
       copy: src=join-command dest=/tmp/join-command.sh mode=0777

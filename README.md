@@ -3,6 +3,7 @@
 ### Prep ESXi:
 Make ssh available and configure ESXi passwordless access as
 described in WWW many times already ;-).
+Test with a Linux box first before you move on.
 
 Important:
 <br>

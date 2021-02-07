@@ -12,7 +12,7 @@ for all the uk8sxx hosts I defined in Vagrantfile.
 Issues I faced:
 <br>
 ESXi uses (as far as I understand) 00:0C:29 as vendor mac for ESXi.
-In order to automate VM's I used 00:50:56 instead which works fine for me. 
+In order to automate VM's I used 00:50:56 as defined in Vagrantfile.
 
 ### Prep Vagrant:
 

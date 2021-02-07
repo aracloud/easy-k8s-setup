@@ -1,5 +1,5 @@
 # suppress parallel vm creation
-ENV['VAGRANT_NO_PARALLEL'] = 'yes'
+#ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
 masters = {
    "uk8s1m" => ["generic/ubuntu1804", 2, 3072, 30, "master-playbook.yml", "192.168.2.121", "00:50:56:aa:aa:aa" ],

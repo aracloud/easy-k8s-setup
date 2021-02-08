@@ -2,12 +2,12 @@
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
 masters = {
-   "uk8s1m" => ["generic/ubuntu1804", 2, 3072, 30, "master-playbook.yml", "192.168.2.121", "00:50:56:aa:aa:aa", "00:50:56:aa:bb:aa" ],
+   "uk8s1m" => ["generic/ubuntu1804", 2, 3072, 30, "master-playbook.yml", "192.168.2.121", "00:50:56:aa:a1:aa", "00:50:56:aa:a2:aa" ],
 }
 
 workers = {
-   "uk8s2w" => ["generic/ubuntu1804", 2, 3072, 30, "worker-playbook.yml", "192.168.2.122", "00:50:56:bb:bb:bb", "00:50:56:bb:aa:aa" ],
-   "uk8s3w" => ["generic/ubuntu1804", 2, 3072, 30, "worker-playbook.yml", "192.168.2.123", "00:50:56:cc:cc:cc", "00:50:56:cc:aa:aa" ],
+   "uk8s2w" => ["generic/ubuntu1804", 2, 3072, 30, "worker-playbook.yml", "192.168.2.122", "00:50:56:aa:b1:aa", "00:50:56:aa:b2:aa" ],
+   "uk8s3w" => ["generic/ubuntu1804", 2, 3072, 30, "worker-playbook.yml", "192.168.2.123", "00:50:56:aa:c1:aa", "00:50:56:aa:c2:aa" ],
 }
 
 Vagrant.configure("2") do |config|

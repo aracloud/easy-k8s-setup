@@ -17,6 +17,7 @@ In order to automate VM's I used 00:50:56 as prefix defined in Vagrantfile.
 
 ### Prep Ansible via python:
 I installed ansible via pip3 on a linux box:
+<br>
 $ sudo pip3 install ansible
 
 ### Prep Vagrant:

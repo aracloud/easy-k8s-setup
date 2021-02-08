@@ -94,7 +94,7 @@
         state: restarted
 
     - name: Initialize the Kubernetes cluster using kubeadm
-      command: kubeadm init --apiserver-advertise-address="{{ node_ip }}" --apiserver-cert-extra-sans="{{ node_ip }}"  --node-name "{{ first_master }}"" --pod-network-cidr=10.244.0.0/16
+      command: kubeadm init --apiserver-advertise-address="{{ node_ip }}" --apiserver-cert-extra-sans="{{ node_ip }}"  --node-name "{{ first_master }}" --pod-network-cidr=10.244.0.0/16
 
     - name: Setup kubeconfig for vagrant user
       command: "{{ item }}"

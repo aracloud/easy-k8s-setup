@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
         ansible.extra_vars = {
                 node_ip: nodeip,
             }
-      end
+      end #end ansible provision
 
     end #end of machine
 
@@ -76,7 +76,7 @@ Vagrant.configure("2") do |config|
         ansible.extra_vars = {
                 node_ip: nodeip,
             }
-      end
+      end #end ansible provision
 
     end #end of machine
 

@@ -12,15 +12,15 @@ for all the uk8sxx hosts I defined in Vagrantfile.
 
 Issues I faced:
 <br>
-ESXi uses (as far as I understand) 00:0C:29 as vendor mac for ESXi.
-In order to automate VM's I used 00:50:56 as defined in Vagrantfile.
+ESXi uses (as far as I understand) 00:0C:29 as vendor prefix for ESXi.
+In order to automate VM's I used 00:50:56 as prefix defined in Vagrantfile.
 
 ### Prep Vagrant:
 
 ```bash
 Install vagrant as describe at Hashicorp!
 
-ESXi plug-in idocumentation: https://github.com/josenk/vagrant-vmware-esxi
+ESXi plug-in documentation: https://github.com/josenk/vagrant-vmware-esxi
 
 Install plugin: vagrant plugin install vagrant-vmware-esxi
 

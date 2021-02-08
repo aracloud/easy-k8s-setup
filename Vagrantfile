@@ -1,6 +1,8 @@
 # suppress parallel vm creation
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
+# this would not work with multiple masters of course 
+# Just use this setup with only one master in masters array !!!
 masters = {
    "uk8s1m" => ["generic/ubuntu1804", 2, 3072, 30, "master-playbook.yml", "192.168.2.121", "00:50:56:aa:a1:aa", "00:50:56:aa:a2:aa" ],
 }
@@ -40,6 +42,7 @@ Vagrant.configure("2") do |config|
         ansible.playbook = playbook
         ansible.extra_vars = {
                 node_ip: nodeip,
+                first_master: name,
             }
       end #end ansible provision
 

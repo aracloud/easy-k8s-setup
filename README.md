@@ -10,10 +10,14 @@ Important:
 I use DHCP on the "VM Network" and configured static IP mappings
 for all the uk8sxx hosts I defined in Vagrantfile.
 
-Issues I faced:
+Issues I faced regarding mac addresses in ESXi:
 <br>
 ESXi uses (as far as I understand) 00:0C:29 as vendor prefix for ESXi.
 In order to automate VM's I used 00:50:56 as prefix defined in Vagrantfile.
+
+### Prep Ansible via python:
+I installed ansible via pip3:
+$ sudo pip3 install ansible
 
 ### Prep Vagrant:
 

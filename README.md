@@ -16,7 +16,7 @@ ESXi uses (as far as I understand) 00:0C:29 as vendor prefix for ESXi.
 In order to automate VM's I used 00:50:56 as prefix defined in Vagrantfile.
 
 ### Prep Ansible via python:
-I installed ansible via pip3:
+I installed ansible via pip3 on a linux box:
 $ sudo pip3 install ansible
 
 ### Prep Vagrant:

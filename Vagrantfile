@@ -2,19 +2,19 @@
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
 masters = {
-   "uk8s1m" => ["generic/ubuntu1804", 2, 3072, 30, "master-playbook.yml", "192.168.2.121", "00:50:56:aa:aa:aa" ],
+   "uk8s1m" => ["generic/ubuntu1804", 2, 3072, 30, "master-playbook.yml", "192.168.2.121", "00:50:56:aa:aa:aa", "00:50:56:aa:bb:aa" ],
 }
 
 workers = {
-   "uk8s2w" => ["generic/ubuntu1804", 2, 3072, 30, "worker-playbook.yml", "192.168.2.122", "00:50:56:bb:bb:bb" ],
-   "uk8s3w" => ["generic/ubuntu1804", 2, 3072, 30, "worker-playbook.yml", "192.168.2.123", "00:50:56:bb:ab:bb" ],
+   "uk8s2w" => ["generic/ubuntu1804", 2, 3072, 30, "worker-playbook.yml", "192.168.2.122", "00:50:56:bb:bb:bb", "00:50:56:bb:aa:aa" ],
+   "uk8s3w" => ["generic/ubuntu1804", 2, 3072, 30, "worker-playbook.yml", "192.168.2.123", "00:50:56:cc:cc:cc", "00:50:56:cc:aa:aa" ],
 }
 
 Vagrant.configure("2") do |config|
 
   # building master nodes
   masters.each do | (name, cfg) |
-    box, numvcpus, memory, storage, playbook, nodeip, macaddr = cfg
+    box, numvcpus, memory, storage, playbook, nodeip, macaddr1, macaddr2 = cfg
 
     config.vm.define name do |machine|
       machine.vm.box = box
@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
         esxi.guest_memsize = memory
         esxi.guest_numvcpus = numvcpus
         esxi.guest_storage = storage
-        esxi.guest_mac_address = [ macaddr ]
+        esxi.guest_mac_address = [ macaddr1, macaddr2 ]
         esxi.guest_guestos = 'ubuntu-64'
         esxi.guest_nic_type = 'vmxnet3'
         esxi.debug = 'false'
@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
 
   # building worker nodes
   workers.each do | (name, cfg) |
-    box, numvcpus, memory, storage, playbook, nodeip, macaddr = cfg
+    box, numvcpus, memory, storage, playbook, nodeip, macaddr1, macaddr2 = cfg
 
     config.vm.define name do |machine|
       machine.vm.box = box
@@ -64,7 +64,7 @@ Vagrant.configure("2") do |config|
         esxi.guest_memsize = memory
         esxi.guest_numvcpus = numvcpus
         esxi.guest_storage = storage
-        esxi.guest_mac_address = [ macaddr ]
+        esxi.guest_mac_address = [ macaddr1, macaddr2 ]
         esxi.guest_guestos = 'ubuntu-64'
         esxi.guest_nic_type = 'vmxnet3'
         esxi.debug = 'false'

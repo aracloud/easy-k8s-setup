@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
       machine.vm.provider :vmware_esxi do |esxi|
         esxi.esxi_hostname = 'esxi'
         esxi.esxi_username = 'root'
-        esxi.esxi_password = 'file:./.esxi_password'
+        esxi.esxi_password = 'file:./esxi_password'
         esxi.esxi_virtual_network = ['VM Network', 'internal-60']
         esxi.esxi_disk_store = 'datastore'
         esxi.guest_memsize = memory
@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
       machine.vm.provider :vmware_esxi do |esxi|
         esxi.esxi_hostname = 'esxi'
         esxi.esxi_username = 'root'
-        esxi.esxi_password = 'file:./.esxi_password'
+        esxi.esxi_password = 'file:./esxi_password'
         esxi.esxi_virtual_network = ['VM Network', 'internal-60']
         esxi.esxi_disk_store = 'datastore'
         esxi.guest_memsize = memory

@@ -6,16 +6,6 @@ Goal
 This setup allows to create a multi-node kubernetes cluster
 on an ESXi lab environment. 
 
-Disclaimer
-==========
-
-These scripts are only meant to be used for testing purposes 
-only ! Even if they strive to create a environement relatively 
-representative of a production kubernetes cluster (with notably 
-different roles on different nodes and the activation of RBAC), 
-the cluster comes with default configuration and with no 
-hardening whatsoever !
-
 Prerequisites
 =============
 
@@ -62,3 +52,14 @@ Install plugin: vagrant plugin install vagrant-vmware-esxi
 $ vagrant up |tee log.txt
 ```
 
+
+
+Disclaimer
+==========
+
+These scripts are only meant to be used for testing purposes 
+only ! Even if they strive to create a environement relatively 
+representative of a production kubernetes cluster (with notably 
+different roles on different nodes and the activation of RBAC), 
+the cluster comes with default configuration and with no 
+hardening whatsoever !

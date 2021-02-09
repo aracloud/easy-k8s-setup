@@ -85,7 +85,7 @@
       lineinfile:
         create: yes
         path: /etc/default/kubelet
-        line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip }}
+        line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip1 }}
 
     - name: Restart kubelet
       service:
@@ -106,3 +106,10 @@
     - name: docker status
       service: name=docker state=started
 
+  network_interfaces:
+    - name: eth1
+      configure: true
+      enable: true
+      method: static
+      address: {{ node_ip2 }}
+      netmask: 255.255.255.0

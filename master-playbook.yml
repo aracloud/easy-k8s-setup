@@ -118,11 +118,3 @@
   handlers:
     - name: docker status
       service: name=docker state=started
-
-  network_interfaces:
-    - name: eth1
-      configure: true
-      enable: true
-      method: static
-      address: {{ node_ip2 }}
-      netmask: 255.255.255.0

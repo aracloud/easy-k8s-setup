@@ -105,7 +105,7 @@
 
     - name: Install calico pod network
       become: false
-      command: kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
+      command: kubectl apply -f https://docs.projectcalico.org/manifests/calico-typha.yaml
 
     - name: Generate join command
       command: kubeadm token create --print-join-command

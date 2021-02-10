@@ -59,6 +59,19 @@
       command: swapoff -a
       when: ansible_swaptotal_mb > 0
 
+    - name: Configure netplan second nic
+      blockinfile:
+        path: /etc/netplan/01-netcfg.yaml
+        block: |2
+              eth1:
+                dhcp4: false
+                dhcp6: false
+                optional: true
+                addresses: [{{ node_ip2 }}/24]
+
+    - name: Apply netplan again
+      command: netplan apply
+
     - name: Add an apt signing key for Kubernetes
       apt_key:
         url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
@@ -81,7 +94,7 @@
           - kubeadm 
           - kubectl
 
-    - name: Configure node ip
+    - name: Configure node ip for Kubernetes
       lineinfile:
         create: yes
         path: /etc/default/kubelet
@@ -114,19 +127,6 @@
     - name: Copy join command to local file
       become: false
       local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="./join-command"
-
-    - name: Configure nic's
-      blockinfile:
-        path: /etc/netplan/01-netcfg.yaml
-        block: |2
-              eth1:
-                dhcp4: false
-                dhcp6: false
-                optional: true
-                addresses: [{{ node_ip2 }}/24]
-
-    - name: Apply netplan again
-      command: netplan apply
 
   handlers:
     - name: docker status

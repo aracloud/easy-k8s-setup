@@ -125,6 +125,9 @@
               optional: true
               addresses: [{{ node_ip2 }}/24]
 
+    - name: Apply netplan again
+      command: netplan apply
+
   handlers:
     - name: docker status
       service: name=docker state=started

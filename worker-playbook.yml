@@ -102,7 +102,7 @@
     - name: Join the node to cluster
       command: sh /tmp/join-command.sh
 
-    - name: Configure nic's
+    - name: Configure netplan second nic
       blockinfile:
         path: /etc/netplan/01-netcfg.yaml
         block: |4
@@ -111,6 +111,9 @@
               dhcp6: false
               optional: true
               addresses: [{{ node_ip2 }}/24]
+
+    - name: Apply netplan again
+      command: netplan apply
 
   handlers:
     - name: docker status

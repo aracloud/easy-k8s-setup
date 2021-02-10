@@ -105,12 +105,12 @@
     - name: Configure netplan second nic
       blockinfile:
         path: /etc/netplan/01-netcfg.yaml
-        block: |4
-            eth1:
-              dhcp4: false
-              dhcp6: false
-              optional: true
-              addresses: [{{ node_ip2 }}/24]
+        block: |2
+              eth1:
+                dhcp4: false
+                dhcp6: false
+                optional: true
+                addresses: [{{ node_ip2 }}/24]
 
     - name: Apply netplan again
       command: netplan apply

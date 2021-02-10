@@ -98,7 +98,7 @@
       lineinfile:
         create: yes
         path: /etc/default/kubelet
-        line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip1 }}
+        line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip2 }}
 
     - name: Restart kubelet
       service:

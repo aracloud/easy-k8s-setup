@@ -33,11 +33,11 @@
                 optional: true
                 addresses: [{{ node_ip2 }}/24]
 
-    - name: Disable ufw firewall
-      command: ufw disable
-
     - name: Apply netplan again
       command: netplan apply
+
+    - name: Disable ufw firewall
+      command: ufw disable
 
     - name: Install packages that allow apt to be used over HTTPS
       apt:

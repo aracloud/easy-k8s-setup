@@ -3,30 +3,10 @@
   become: true
   tasks:
 
-#    - name: Configure netplan second nic
-#      blockinfile:
-#        path: /etc/netplan/01-netcfg.yaml
-#        block: |2
-#              eth1:
-#                dhcp4: false
-#                dhcp6: false
-#                optional: true
-#                addresses: [{{ node_ip2 }}/24]
-
     - name: Configure netplan second nic
       blockinfile:
         path: /etc/netplan/01-netcfg.yaml
-        block: |
-          network:
-            version: 2
-            renderer: networkd
-            ethernets:
-              eth0:
-                dhcp4: true
-                dhcp6: false
-                optional: true
-                nameservers:
-                  addresses: [192.168.2.6]
+        block: |2
               eth1:
                 dhcp4: false
                 dhcp6: false

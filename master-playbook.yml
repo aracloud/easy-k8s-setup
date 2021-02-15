@@ -2,6 +2,43 @@
 - hosts: all
   become: true
   tasks:
+
+#    - name: Configure netplan second nic
+#      blockinfile:
+#        path: /etc/netplan/01-netcfg.yaml
+#        block: |2
+#              eth1:
+#                dhcp4: false
+#                dhcp6: false
+#                optional: true
+#                addresses: [{{ node_ip2 }}/24]
+
+    - name: Configure netplan second nic
+      blockinfile:
+        path: /etc/netplan/01-netcfg.yaml
+        block: |
+          network:
+            version: 2
+            renderer: networkd
+            ethernets:
+              eth0:
+                dhcp4: true
+                dhcp6: false
+                optional: true
+                nameservers:
+                  addresses: [192.168.2.6]
+              eth1:
+                dhcp4: false
+                dhcp6: false
+                optional: true
+                addresses: [{{ node_ip2 }}/24]
+
+    - name: Apply netplan again
+      command: netplan apply
+
+    - name: Disable ufw firewall
+      command: ufw disable
+
     - name: Install packages that allow apt to be used over HTTPS
       apt:
         name: "{{ packages }}"
@@ -52,46 +89,9 @@
         - swap
         - none
 
-    - name: Disable ufw firewall
-      command: ufw disable
-
     - name: Disable swap
       command: swapoff -a
       when: ansible_swaptotal_mb > 0
-
-#    - name: Configure netplan second nic
-#      blockinfile:
-#        path: /etc/netplan/01-netcfg.yaml
-#        block: |2
-#              eth1:
-#                dhcp4: false
-#                dhcp6: false
-#                optional: true
-#                addresses: [{{ node_ip2 }}/24]
-
-    - name: Configure netplan second nic
-      blockinfile:
-        path: /etc/netplan/01-netcfg.yaml
-        block: |
-          network:
-            version: 2
-            renderer: networkd
-            ethernets:
-              eth0:
-                dhcp4: true
-                dhcp6: false
-                optional: true
-                nameservers:
-                  addresses: [192.168.2.6]
-              eth1:
-                dhcp4: false
-                dhcp6: false
-                optional: true
-                addresses: [{{ node_ip2 }}/24]
-
-
-    - name: Apply netplan again
-      command: netplan apply
 
     - name: Add an apt signing key for Kubernetes
       apt_key:

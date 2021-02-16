@@ -12,7 +12,6 @@
                 dhcp6: false
                 optional: true
                 addresses: [{{ node_ip2 }}/24]
-                gateway4: 192.168.60.67
 
     - name: Apply netplan again
       command: netplan apply

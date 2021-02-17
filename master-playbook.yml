@@ -12,7 +12,7 @@
                 dhcp6: false
                 optional: true
                 addresses: [{{ node_ip2 }}/24]
-                gateway4: 192.168.60.67
+                gateway4: {{ gateway_ip }}
 
     - name: Apply netplan again
       command: netplan apply
@@ -109,7 +109,7 @@
         state: restarted
 
     - name: Initialize the Kubernetes cluster using kubeadm
-      command: kubeadm init --apiserver-advertise-address="{{ node_ip2 }}" --apiserver-cert-extra-sans="{{ node_ip2 }}"  --node-name "{{ first_master }}" --pod-network-cidr=10.244.0.0/16
+      command: kubeadm init --apiserver-advertise-address="{{ node_ip2 }}" --apiserver-cert-extra-sans="{{ node_ip2 }}"  --node-name "{{ first_master }}" --pod-network-cidr={{ pod_net_cidr }}
 
     - name: Setup kubeconfig for vagrant user
       command: "{{ item }}"

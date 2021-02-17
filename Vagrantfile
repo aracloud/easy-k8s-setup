@@ -1,6 +1,13 @@
 # suppress parallel vm creation
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
+# eth0 is the default ubuntu nic (dhcp enabled)
+# add static default route for the ESXi lab second nic eth1
+box_eth1_gateway = "192.168.60.67"
+
+# k8s pod network cidr (master-playbook)
+pod_network_cidr= "10.244.0.0/16"
+
 # this would not work with multiple masters of course 
 # Just use this setup with only one master in masters array !!!
 masters = {
@@ -43,7 +50,9 @@ Vagrant.configure("2") do |config|
         ansible.extra_vars = {
                 node_ip1: nodeip1,
                 node_ip2: nodeip2,
+                gateway_ip: box_eth1_gateway,
                 first_master: name,
+                pod_net_cidr: pod_network_cidr,
             }
       end #end ansible provision
 
@@ -80,6 +89,7 @@ Vagrant.configure("2") do |config|
         ansible.extra_vars = {
                 node_ip1: nodeip1,
                 node_ip2: nodeip2,
+                gateway_ip: box_eth1_gateway,
             }
       end #end ansible provision
 

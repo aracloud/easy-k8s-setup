@@ -123,9 +123,11 @@
 
     - name: Generate ssh id_rsa key material
       command : echo -e "\n"|ssh-keygen -t rsa -N ""
+      become_user: vagrant
 
     - name: Add key material to authorized keys
       command : cat .ssh/id_rsa.pub >> .ssh/authorized_keys
+      become_user: vagrant
 
     - name: RKE Create a symlink to the binary
       file:

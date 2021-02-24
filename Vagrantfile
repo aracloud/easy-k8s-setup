@@ -11,6 +11,7 @@ pod_network_cidr= "10.244.0.0/16"
 # RKE vars 
 rke_version_vag= "v1.2.4"
 rke_install_dir_vag= "/usr/local/bin"
+rke_config_file_vag= "rancher-cluster.yml"
 
 # this would not work with multiple masters of course 
 # Just use this setup with only one master in masters array !!!
@@ -137,6 +138,7 @@ Vagrant.configure("2") do |config|
                 gateway_ip: box_eth1_gateway,
                 rke_version: rke_version_vag,
                 rke_install_dir: rke_install_dir_vag,
+                rke_cluster_config: rke_config_file_vag,
             }
       end #end ansible provision
 

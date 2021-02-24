@@ -127,6 +127,17 @@
         dest: "{{ rke_install_dir }}/rke"
         state: link
 
+    - name: "RUN rke up"
+      command: "{{ rke_install_dir }}/rke up --config {{ rke_cluster_config }}"
+      register: rke_up_result
+      changed_when: false
+
+    - name: "rke up Result"
+      debug:
+        msg: "{{ rke_up_result.stdout }}"
+      when: rke_up_result is not skipped
+      
+
   handlers:
     - name: docker status
       service: name=docker state=started

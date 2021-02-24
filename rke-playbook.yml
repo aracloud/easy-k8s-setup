@@ -122,11 +122,11 @@
         mode: 0755
 
     - name: Generate ssh id_rsa key material
-      community.crypto.openssh_keypair:
-        path: ~/.ssh/
+      openssh_keypair:
+        path: ~/.ssh/id_rsa
 
     - name: Add key material to authorized keys
-      command : cat .ssh/id_rsa.pub >> .ssh/authorized_keys
+      command : cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
     - name: RKE Create a symlink to the binary
       file:

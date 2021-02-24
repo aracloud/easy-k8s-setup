@@ -19,6 +19,10 @@ workers = {
    "uk8s3w" => ["generic/ubuntu2004", 2, 3072, 30, "worker-playbook.yml", "192.168.2.123", "192.168.60.123", "00:50:56:aa:c1:aa", "00:50:56:aa:c2:aa" ],
 }
 
+rkes = {
+   "uk8s-rke" => ["generic/ubuntu2004", 1, 1024, 30, "rke-playbook.yml", "192.168.2.120", "192.168.60.120", "00:50:56:aa:d1:aa", "00:50:56:aa:d2:aa" ],
+}
+
 Vagrant.configure("2") do |config|
 
   # building master nodes
@@ -62,6 +66,43 @@ Vagrant.configure("2") do |config|
 
   # building worker nodes
   workers.each do | (name, cfg) |
+    box, numvcpus, memory, storage, playbook, nodeip1, nodeip2, macaddr1, macaddr2 = cfg
+
+    config.vm.define name do |machine|
+      machine.vm.box = box
+      machine.vm.hostname = name
+
+      machine.vm.provider :vmware_esxi do |esxi|
+        esxi.esxi_hostname = 'esxi'
+        esxi.esxi_username = 'root'
+        esxi.esxi_password = 'file:./esxi_password'
+        esxi.esxi_virtual_network = ['VM Network', 'internal-60']
+        esxi.esxi_disk_store = 'datastore'
+        esxi.guest_memsize = memory
+        esxi.guest_numvcpus = numvcpus
+        esxi.guest_boot_disk_size = storage
+        esxi.guest_mac_address = [ macaddr1, macaddr2 ]
+        esxi.guest_guestos = 'ubuntu-64'
+        esxi.guest_nic_type = 'vmxnet3'
+        esxi.debug = 'false'
+        
+      end #end of provider
+
+      machine.vm.provision "ansible" do |ansible|
+        ansible.playbook = playbook
+        ansible.extra_vars = {
+                node_ip1: nodeip1,
+                node_ip2: nodeip2,
+                gateway_ip: box_eth1_gateway,
+            }
+      end #end ansible provision
+
+    end #end of machine
+
+  end #end of each loop
+
+  # building rke nodes
+  rkes.each do | (name, cfg) |
     box, numvcpus, memory, storage, playbook, nodeip1, nodeip2, macaddr1, macaddr2 = cfg
 
     config.vm.define name do |machine|

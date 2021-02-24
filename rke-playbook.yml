@@ -141,7 +141,7 @@
       authorized_key:
         user: root
         state: present
-        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+        key: ~/.ssh/id_rsa.pub
 
     - name: RKE Create a symlink to the binary
       file:

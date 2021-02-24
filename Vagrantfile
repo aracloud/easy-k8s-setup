@@ -132,7 +132,6 @@ Vagrant.configure("2") do |config|
 
       machine.vm.provision "ansible" do |ansible|
         ansible.playbook = playbook
-        ansible.verbose = "vvv"
         ansible.extra_vars = {
                 node_ip1: nodeip1,
                 node_ip2: nodeip2,

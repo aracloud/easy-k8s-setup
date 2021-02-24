@@ -122,14 +122,11 @@
         mode: 0755
 
     - name: Generate ssh id_rsa key material
-      command : echo -e "\n"|ssh-keygen -t rsa -N ""
-      become: yes
-      become_user: vagrant
+      community.crypto.openssh_keypair:
+        path: ~/.ssh/
 
     - name: Add key material to authorized keys
       command : cat .ssh/id_rsa.pub >> .ssh/authorized_keys
-      become: yes
-      become_user: vagrant
 
     - name: RKE Create a symlink to the binary
       file:
@@ -138,12 +135,10 @@
         state: link
 
     - name: Copy the rke cluster config to server location
-      copy: src={{ rke_cluster_config }} dest=/home/vagrant/{{ rke_cluster_config }}
+      copy: src={{ rke_cluster_config }} dest=/tmp/{{ rke_cluster_config }}
 
     - name: "RUN rke up"
-      command: "{{ rke_install_dir }}/rke up --config /home/vagrant/{{ rke_cluster_config }}"
-      become: yes
-      become_user: vagrant
+      command: "{{ rke_install_dir }}/rke up --config /tmp/{{ rke_cluster_config }}"
       register: rke_up_result
       changed_when: false
 

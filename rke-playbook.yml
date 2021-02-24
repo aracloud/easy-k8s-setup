@@ -121,10 +121,17 @@
         group: "root"
         mode: 0755
 
-    - name: Creates directory for ssh key pair
+    - name: Creates directory .ssh
       file:
         path: ~/.ssh
         state: directory
+        mode: 0700
+
+    - name: Creating file authorized_keys
+      file:
+        path: "~/.ssh/authorized_keys"
+        state: touch
+        mode: 0600
 
     - name: Generate ssh id_rsa key material
       openssh_keypair:

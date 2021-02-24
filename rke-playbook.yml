@@ -121,13 +121,13 @@
         group: "root"
         mode: 0755
 
-    - name: Creates directory .ssh
+    - name: Create directory .ssh
       file:
         path: ~/.ssh
         state: directory
         mode: 0700
 
-    - name: Creating file authorized_keys
+    - name: Create file authorized_keys
       file:
         path: "~/.ssh/authorized_keys"
         state: touch
@@ -137,8 +137,10 @@
       openssh_keypair:
         path: ~/.ssh/id_rsa
 
-    - name: Add key material to authorized keys
-      command : cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+    - name: Set authorized key taken from file
+      authorized_key:
+        state: present
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
     - name: RKE Create a symlink to the binary
       file:

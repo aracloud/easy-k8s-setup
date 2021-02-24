@@ -1,14 +1,10 @@
 ## Easy way to setup a Kubernetes (k8s) cluster on ESXi for lab purposes
 
-Goal
-====
-
+### Goal
 This setup allows to create a multi-node kubernetes cluster
 on an ESXi lab environment. 
 
-Prerequisites
-=============
-
+### Prerequisites
 * Free ESXi (https://my.vmware.com/en/web/vmware/evalcenter?p=free-esxi7)
 * Vagrant (https://www.vagrantup.com/downloads.html)
 * Ansible (https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
@@ -52,11 +48,7 @@ Install plugin: vagrant plugin install vagrant-vmware-esxi
 $ vagrant up |tee log.txt
 ```
 
-
-
-Disclaimer
-==========
-
+## Disclaimer
 These scripts are only meant to be used for testing purposes 
 only ! Even if they strive to create a environement relatively 
 representative of a production kubernetes cluster (with notably 

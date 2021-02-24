@@ -147,10 +147,10 @@
         state: link
 
     - name: Copy the rke cluster config to server location
-      copy: src={{ rke_cluster_config }} dest=/tmp/{{ rke_cluster_config }}
+      copy: src={{ rke_cluster_config }} dest=~/{{ rke_cluster_config }}
 
     - name: "RUN rke up"
-      command: "{{ rke_install_dir }}/rke up --config /tmp/{{ rke_cluster_config }}"
+      command: "{{ rke_install_dir }}/rke up --config ~/{{ rke_cluster_config }}"
       register: rke_up_result
       changed_when: false
 

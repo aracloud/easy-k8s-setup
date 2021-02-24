@@ -1,6 +1,6 @@
 nodes:
   - address: 192.168.60.120
-    user: vagrant
+    user: root
     role: [controlplane, worker, etcd]
 
 services:

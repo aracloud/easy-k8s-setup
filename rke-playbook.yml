@@ -121,6 +121,11 @@
         group: "root"
         mode: 0755
 
+    - name: Creates directory for ssh key pair
+      file:
+        path: ~/.ssh
+        state: directory
+
     - name: Generate ssh id_rsa key material
       openssh_keypair:
         path: ~/.ssh/id_rsa

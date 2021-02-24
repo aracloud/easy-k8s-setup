@@ -123,7 +123,6 @@
 
     - name: Generate ssh id_rsa key material
       command : echo -e "\n"|ssh-keygen -t rsa -N ""
-      user: vagrant
 
     - name: Add key material to authorized keys
       command : cat .ssh/id_rsa.pub >> .ssh/authorized_keys

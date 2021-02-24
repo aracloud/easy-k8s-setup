@@ -74,12 +74,12 @@
       command: swapoff -a
       when: ansible_swaptotal_mb > 0
 
-    - name: Add an apt signing key for Kubernetes
+    - name: Add apt signing key for Kubernetes
       apt_key:
         url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
         state: present
 
-    - name: Adding apt repository for Kubernetes
+    - name: Add apt repository for Kubernetes
       apt_repository:
         repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
         state: present
@@ -101,7 +101,7 @@
         url: https://baltocdn.com/helm/signing.asc
         state: present
 
-    - name: Add apt repository for stable version
+    - name: Add apt repository for Helm
       apt_repository:
         repo: deb https://baltocdn.com/helm/stable/debian/ all main
         state: present
@@ -127,8 +127,28 @@
         dest: "{{ rke_install_dir }}/rke"
         state: link
 
+    - name: Configure rke cluster config
+      blockinfile:
+        path: /home/vagrant/{{ rke_cluster_config }}
+        block: |
+            nodes:
+              - address: 192.168.60.120
+                user: vagrant
+                role: [controlplane, worker, etcd]
+            services:
+              etcd:
+                snapshot: true
+                creation: 6h
+                retention: 24h
+            # Required for external TLS termination with
+            # ingress-nginx v0.22+
+            ingress:
+              provider: nginx
+              options:
+                use-forwarded-headers: "true"
+
     - name: "RUN rke up"
-      command: "{{ rke_install_dir }}/rke up --config {{ rke_cluster_config }}"
+      command: "{{ rke_install_dir }}/rke up --config /home/vagrant/{{ rke_cluster_config }}"
       register: rke_up_result
       changed_when: false
 

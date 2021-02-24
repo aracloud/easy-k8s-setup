@@ -139,12 +139,11 @@
 
     - name: Copy the rke cluster config to server location
       copy: src={{ rke_cluster_config }} dest=/home/vagrant/{{ rke_cluster_config }}
-      become: yes
-      become_user: vagrant
 
     - name: "RUN rke up"
       command: "{{ rke_install_dir }}/rke up --config /home/vagrant/{{ rke_cluster_config }}"
-      user: vagrant
+      become: yes
+      become_user: vagrant
       register: rke_up_result
       changed_when: false
 

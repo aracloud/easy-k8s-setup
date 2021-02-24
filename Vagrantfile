@@ -10,7 +10,6 @@ pod_network_cidr= "10.244.0.0/16"
 
 # RKE vars 
 rke_version_vag= "v1.2.4"
-rke_binary_url_vag= "https://github.com/rancher/rke/releases/download/"rke_version_vag"/rke_linux-amd64"
 rke_install_dir_vag= "/usr/local/bin"
 
 # this would not work with multiple masters of course 
@@ -137,7 +136,6 @@ Vagrant.configure("2") do |config|
                 node_ip2: nodeip2,
                 gateway_ip: box_eth1_gateway,
                 rke_version: rke_version_vag,
-                rke_binary_url: rke_binary_url_vag,
                 rke_install_dir: rke_install_dir_vag,
             }
       end #end ansible provision

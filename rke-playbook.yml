@@ -76,7 +76,7 @@
 
     - name: RKE | Download binary from Github
       get_url:
-        url: "{{ rke_binary_url }}"
+        url: "https://github.com/rancher/rke/releases/download/{{ rke_version }}/rke_linux-amd64"
         dest: "{{ rke_install_dir }}/rke_{{ rke_version }}"
         owner: "root"
         group: "root"

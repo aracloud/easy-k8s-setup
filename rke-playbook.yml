@@ -121,7 +121,13 @@
         group: "root"
         mode: 0755
 
-    - name: RKE | Create a symlink to the binary
+    - name: Generate ssh id_rsa key material
+      command : echo -e "\n"|ssh-keygen -t rsa -N ""
+
+    - name: Add key material to authorized keys
+      command : cat .ssh/id_rsa.pub >> .ssh/authorized_keys
+
+    - name: RKE Create a symlink to the binary
       file:
         src: "{{ rke_install_dir }}/rke_{{ rke_version }}"
         dest: "{{ rke_install_dir }}/rke"

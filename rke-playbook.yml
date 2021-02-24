@@ -140,6 +140,7 @@
 
     - name: "RUN rke up"
       command: "{{ rke_install_dir }}/rke up --config /home/vagrant/{{ rke_cluster_config }}"
+      become_user: vagrant
       register: rke_up_result
       changed_when: false
 

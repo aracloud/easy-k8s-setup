@@ -81,18 +81,12 @@
         owner: "root"
         group: "root"
         mode: 0755
-      vars:
-        rke_version: "v1.2.4"
-        rke_binary_url: "https://github.com/rancher/rke/releases/download/{{ rke_version }}/rke_linux-amd64"
-        rke_install_dir: "/usr/local/bin"
 
     - name: RKE | Create a symlink to the binary
       file:
-        src: "{{ rke_install_dir }}"
+        src: "{{ rke_install_dir }}/rke_{{ rke_version }}"
         dest: "{{ rke_install_dir }}/rke"
         state: link
-      vars:
-        rke_install_dir: "/usr/local/bin"
 
   handlers:
     - name: docker status

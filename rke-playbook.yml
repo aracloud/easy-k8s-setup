@@ -164,6 +164,20 @@
       debug:
         msg: "{{ rke_up_result.stdout }}"
       when: rke_up_result is not skipped
+
+    - name: Create directory .kube
+      file:
+        path: ~/.kube
+        state: directory
+
+    - name: Create file kube config
+      file:
+        path: "~/.kube/config"
+        state: touch
+        mode: 0600
+
+    - name: Copy kube config
+      shell: cat ~/{{ rke_cluster_kube_config }} > ~/.kube/config
       
     - name: Create namespace for Rancher Control Plane
       shell: kubectl create namespace cattle-system

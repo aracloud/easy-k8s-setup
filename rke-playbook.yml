@@ -166,24 +166,10 @@
       when: rke_up_result is not skipped
       
     - name: Create namespace for Rancher Control Plane
-      k8s:
-        kubeconfig: "{{ rke_cluster_kube_config }}"
-        state: present
-        api_version: v1
-        kind: Namespace
-        name: cattle-system
-      become: yes
-      become_method: enable
+      shell: kubectl create namespace cattle-system
 
     - name: Create namespace for cert-manager
-      k8s:
-        kubeconfig: "~/{{ rke_cluster_kube_config }}"
-        state: present
-        api_version: v1
-        kind: Namespace
-        name: cert-manager
-      become: yes
-      become_method: enable
+      shell: kubectl create namespace cert-manager
 
   handlers:
     - name: docker status

@@ -25,7 +25,7 @@ workers = {
 }
 
 rkes = {
-   "uk8s-rke" => ["generic/ubuntu2004", 1, 1024, 30, "rke-playbook.yml", "192.168.2.120", "192.168.60.120", "00:50:56:aa:d1:aa", "00:50:56:aa:d2:aa" ],
+   "uk8s-rke" => ["generic/ubuntu2004", 1, 2048, 30, "rke-playbook.yml", "192.168.2.120", "192.168.60.120", "00:50:56:aa:d1:aa", "00:50:56:aa:d2:aa" ],
 }
 
 Vagrant.configure("2") do |config|

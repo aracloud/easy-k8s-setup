@@ -32,6 +32,7 @@
         - curl
         - gnupg-agent
         - software-properties-common
+        - net-tools
 
     - name: Add an apt signing key for Docker
       apt_key:

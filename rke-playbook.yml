@@ -172,6 +172,7 @@
         api_version: v1
         kind: Namespace
         name: cattle-system
+      become: true
 
     - name: Create namespace for cert-manager
       k8s:
@@ -180,6 +181,7 @@
         api_version: v1
         kind: Namespace
         name: cert-manager
+      become: true
 
   handlers:
     - name: docker status

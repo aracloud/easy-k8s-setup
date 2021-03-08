@@ -180,6 +180,22 @@
     - name: Create namespace for cert-manager
       shell: kubectl create namespace cert-manager
 
+    - name: Apply cert manager CRD's
+      shell: kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/{{ rke_cert_mgr_version }}/cert-manager.crds.yaml
+
+    - name: Add the Jetstack Helm repository
+      shell: helm repo add jetstack https://charts.jetstack.io
+
+    - name: Update your local Helm chart repository cache
+      shell: helm repo update
+
+    - name: Install the cert-manager Helm chart
+      shell: helm install \
+              cert-manager jetstack/cert-manager \
+              --namespace cert-manager \
+              --version {{ rke_cert_mgr_version }}
+
+
   handlers:
     - name: docker status
       service: name=docker state=started

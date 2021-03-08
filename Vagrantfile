@@ -13,6 +13,7 @@ rke_version_vag= "v1.2.4"
 rke_install_dir_vag= "/usr/local/bin"
 rke_config_file_vag= "rancher-cluster.yml"
 rke_cluster_kube_config_vag= "kube_config_rancher-cluster.yml"
+rke_cert_mgr_version_vag= "v1.0.4"
 
 # this would not work with multiple masters of course 
 # Just use this setup with only one master in masters array !!!
@@ -142,6 +143,7 @@ Vagrant.configure("2") do |config|
                 rke_install_dir: rke_install_dir_vag,
                 rke_cluster_config: rke_config_file_vag,
                 rke_cluster_kube_config: rke_cluster_kube_config_vag,
+                rke_cert_mgr_version: rke_cert_mgr_version_vag,
             }
       end #end ansible provision
 

@@ -194,8 +194,8 @@
     - name: Add the Jetstack Helm repository
       shell: helm repo add jetstack https://charts.jetstack.io
 
-    - name: Update your local Helm chart repository cache
-      shell: helm repo update
+    # - name: Update your local Helm chart repository cache
+    #   shell: helm repo update
 
     # - name: Install the cert-manager Helm chart
     #   shell: helm install \
@@ -206,9 +206,20 @@
 
     - name: Install the cert-manager Helm chart
       community.kubernetes.helm:
+        update_repo_cache: yes
         name: cert-manager
         chart_ref: jetstack/cert-manager
+        chart_version: "{{ rke_cert_mgr_version }}"
         release_namespace: cert-manager
+
+    - name: Install Rancher Server
+      community.kubernetes.helm:
+        update_repo_cache: yes
+        name: rancher
+        chart_ref: rancher-latest/rancher
+        release_namespace: cattle-system
+        release_values:
+          hostname: rancher.arahome.ml
 
 
   handlers:

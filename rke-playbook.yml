@@ -180,6 +180,7 @@
       k8s:
         name: cattle-system
         kind: namespace
+        state: present
 
     - name: Create namespace for cert-manager
       shell: kubectl create namespace cert-manager

@@ -197,11 +197,18 @@
     - name: Update your local Helm chart repository cache
       shell: helm repo update
 
+    # - name: Install the cert-manager Helm chart
+    #   shell: helm install \
+    #           cert-manager jetstack/cert-manager \
+    #           --namespace cert-manager \
+    #           --version {{ rke_cert_mgr_version }}
+
+
     - name: Install the cert-manager Helm chart
-      shell: helm install \
-              cert-manager jetstack/cert-manager \
-              --namespace cert-manager \
-              --version {{ rke_cert_mgr_version }}
+      community.kubernetes.helm:
+        name: cert-manager
+        chart_ref: jetstack/cert-manager
+        release_namespace: cert-manager
 
 
   handlers:

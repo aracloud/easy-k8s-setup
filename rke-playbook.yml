@@ -175,10 +175,10 @@
       shell: cat ~/{{ rke_cluster_kube_config }} > ~/.kube/config
       
     - name: Create namespace for Rancher Control Plane
-      shell: kubectl apply namespace cattle-system      
+      shell: kubectl apply -f namespace cattle-system      
 
     - name: Create namespace for cert-manager
-      shell: kubectl apply namespace cert-manager
+      shell: kubectl apply -f namespace cert-manager
 
     - name: Apply cert manager CRD's
       shell: kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/{{ rke_cert_mgr_version }}/cert-manager.crds.yaml

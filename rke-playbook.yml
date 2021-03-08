@@ -181,7 +181,7 @@
         name: cattle-system
         kind: namespace
         state: present
-        api_endpoint: {{ node_ip1 }}
+        api_endpoint: 192.168.60.120
         insecure: true
 
     - name: Create namespace for cert-manager

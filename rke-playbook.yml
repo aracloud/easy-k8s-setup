@@ -155,10 +155,10 @@
       register: rke_up_result
       changed_when: false
 
-    - name: "rke up Result"
-      debug:
-        msg: "{{ rke_up_result.stdout }}"
-      when: rke_up_result is not skipped
+    # - name: "rke up Result"
+    #   debug:
+    #     msg: "{{ rke_up_result.stdout }}"
+    #   when: rke_up_result is not skipped
 
     - name: Create directory .kube
       file:

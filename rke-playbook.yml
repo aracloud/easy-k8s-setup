@@ -177,7 +177,7 @@
     #- name: Create namespace for Rancher Control Plane
     #  shell: kubectl create namespace cattle-system
     - name: Create namespace for Rancher Control Plane
-      k8s:
+      community.kubernetes.k8s:
         name: cattle-system
         kind: namespace
         state: present

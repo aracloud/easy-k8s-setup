@@ -19,11 +19,12 @@
 
     - name: Disable ufw firewall
       command: ufw disable
+      register: ufw_out
+      changed_when: "'disabled on system startup' not in ufw_out.stdout"
 
     - name: Install packages that allow apt to be used over HTTPS
       apt:
         name: "{{ packages }}"
-        state: present
         update_cache: yes
       vars:
         packages:
@@ -37,17 +38,14 @@
     - name: Add an apt signing key for Docker
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
-        state: present
 
     - name: Add apt repository for stable version
       apt_repository:
         repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
-        state: present
 
     - name: Install docker and its dependecies
       apt: 
         name: "{{ packages }}"
-        state: present
         update_cache: yes
       vars:
         packages:
@@ -66,7 +64,6 @@
       mount:
         name: "{{ item }}"
         fstype: swap
-        state: absent
       with_items:
         - swap
         - none
@@ -78,18 +75,15 @@
     - name: Add apt signing key for Kubernetes
       apt_key:
         url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-        state: present
 
     - name: Add apt repository for Kubernetes
       apt_repository:
         repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
-        state: present
         filename: kubernetes.list
 
     - name: Install Kubernetes binaries
       apt: 
         name: "{{ packages }}"
-        state: present
         update_cache: yes
       vars:
         packages:
@@ -100,19 +94,19 @@
     - name: Add an apt signing key for Helm
       apt_key:
         url: https://baltocdn.com/helm/signing.asc
-        state: present
 
     - name: Add apt repository for Helm
       apt_repository:
         repo: deb https://baltocdn.com/helm/stable/debian/ all main
-        state: present
         filename: helm-stable-debian.list
 
     - name: Install Helm binary
       apt: 
         name: helm
-        state: present
         update_cache: yes
+
+    - name: Update your local Helm chart repository cache
+      shell: helm repo update
 
     - name: RKE | Download binary from Github
       get_url:
@@ -179,23 +173,18 @@
         name: cattle-system
         api_version: v1
         kind: Namespace
-        state: present
 
     - name: Create namespace for cert-manager
       community.kubernetes.k8s:
         name: cert-manager
         api_version: v1
         kind: Namespace
-        state: present
 
     - name: Apply cert manager CRD's
       shell: kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/{{ rke_cert_mgr_version }}/cert-manager.crds.yaml
 
     - name: Add the Jetstack Helm repository
       shell: helm repo add jetstack https://charts.jetstack.io
-
-    #- name: Update your local Helm chart repository cache
-    #  shell: helm repo update
 
     # - name: Install the cert-manager Helm chart
     #   shell: helm install \
@@ -212,17 +201,24 @@
         chart_version: "{{ rke_cert_mgr_version }}"
         release_namespace: cert-manager
 
+    - name: Wait for certmanager to be ready
+      command: "kubectl -n cert-manager rollout status deploy/cert-manager"
+
+    - name: Wait 20 seconds for cert-manager to properly run
+      pause:
+        seconds: "20"
+
     - name: Add the Rancher Helm repository
       shell: helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 
-    - name: Install Rancher Server
-      community.kubernetes.helm:
-        update_repo_cache: yes
-        name: rancher
-        chart_ref: rancher-stable/rancher
-        release_namespace: cattle-system
-        release_values:
-          hostname: rancher.arahome.ml
+    # - name: Install Rancher Server
+    #   community.kubernetes.helm:
+    #     update_repo_cache: yes
+    #     name: rancher
+    #     chart_ref: rancher-stable/rancher
+    #     release_namespace: cattle-system
+    #     release_values:
+    #       hostname: rancher.arahome.ml
 
 
   handlers:

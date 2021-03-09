@@ -64,6 +64,7 @@
       mount:
         name: "{{ item }}"
         fstype: swap
+        state: absent
       with_items:
         - swap
         - none

@@ -139,7 +139,7 @@
         path: ~/.ssh/id_rsa
 
     - name: sneaky way to get the keys right
-      shell: cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+      shell: cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
 
     - name: RKE Create a symlink to the binary
       file:
@@ -194,8 +194,8 @@
     - name: Add the Jetstack Helm repository
       shell: helm repo add jetstack https://charts.jetstack.io
 
-    # - name: Update your local Helm chart repository cache
-    #   shell: helm repo update
+    #- name: Update your local Helm chart repository cache
+    #  shell: helm repo update
 
     # - name: Install the cert-manager Helm chart
     #   shell: helm install \

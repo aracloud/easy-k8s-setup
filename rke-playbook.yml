@@ -212,6 +212,9 @@
         chart_version: "{{ rke_cert_mgr_version }}"
         release_namespace: cert-manager
 
+    - name: Add the Rancher Helm repository
+      shell: helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
+
     - name: Install Rancher Server
       community.kubernetes.helm:
         update_repo_cache: yes

@@ -13,7 +13,7 @@ rke_version_vag= "v1.2.4"
 rke_install_dir_vag= "/usr/local/bin"
 rke_config_file_vag= "rancher-cluster.yml"
 rke_cluster_kube_config_vag= "kube_config_rancher-cluster.yml"
-rke_cert_mgr_version_vag= "v1.1.0"
+rke_cert_mgr_version_vag= "v1.0.4"
 
 # this would not work with multiple masters of course 
 # Just use this setup with only one master in masters array !!!

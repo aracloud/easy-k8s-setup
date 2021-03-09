@@ -106,8 +106,8 @@
         name: helm
         update_cache: yes
 
-    - name: Update your local Helm chart repository cache
-      shell: helm repo update
+    # - name: Update your local Helm chart repository cache
+    #   shell: helm repo update
 
     - name: RKE | Download binary from Github
       get_url:

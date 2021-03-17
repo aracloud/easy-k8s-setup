@@ -5,10 +5,11 @@ This setup allows to create a multi-node kubernetes cluster
 on an ESXi lab environment. 
 
 ### Prerequisites
+* Host machine uses linux
 * Free ESXi (https://my.vmware.com/en/web/vmware/evalcenter?p=free-esxi7)
+* OVF tool (which is attached in tools folder)
 * Vagrant (https://www.vagrantup.com/downloads.html)
 * Ansible (https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
-* Host machine uses linux
 
 
 ### Prep ESXi:

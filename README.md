@@ -7,7 +7,7 @@ on an ESXi lab environment.
 ### Prerequisites
 * Host machine uses centos linux
 * Free ESXi (https://my.vmware.com/en/web/vmware/evalcenter?p=free-esxi7)
-* OVF tool (which is attached in tools folder)
+* OVF tool (https://code.vmware.com/web/tool/4.4.0/ovf)
 * Vagrant (https://www.vagrantup.com/downloads.html)
 * Ansible (https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 

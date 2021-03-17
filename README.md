@@ -5,7 +5,7 @@ This setup allows to create a multi-node kubernetes cluster
 on an ESXi lab environment. 
 
 ### Prerequisites
-* Host machine uses linux
+* Host machine uses centos linux
 * Free ESXi (https://my.vmware.com/en/web/vmware/evalcenter?p=free-esxi7)
 * OVF tool (which is attached in tools folder)
 * Vagrant (https://www.vagrantup.com/downloads.html)
@@ -28,9 +28,16 @@ ESXi uses (as far as I understand) 00:0C:29 as vendor prefix for ESXi.
 In order to automate VM's I used 00:50:56 as prefix defined in Vagrantfile.
 
 ### Prep Ansible via python:
-I installed ansible via pip3 on a linux box:
-<br>
-$ sudo pip3 install ansible
+I installed ansible via python linux box:
+
+```bash
+# python3 -m pip install pip
+# python3 -m pip install openshift
+# python3 -m pip install ansible
+
+$ ansible-galaxy collection install community.kubernetes
+
+```
 
 ### Prep Vagrant:
 

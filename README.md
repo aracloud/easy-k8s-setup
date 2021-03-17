@@ -31,9 +31,9 @@ In order to automate VM's I used 00:50:56 as prefix defined in Vagrantfile.
 I installed ansible via python linux box:
 
 ```bash
-# python3 -m pip install pip
-# python3 -m pip install openshift
-# python3 -m pip install ansible
+$ sudo python3 -m pip install pip
+$ sudo python3 -m pip install openshift
+$ sudo python3 -m pip install ansible
 
 $ ansible-galaxy collection install community.kubernetes
 

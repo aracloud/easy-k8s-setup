@@ -18,12 +18,12 @@ rke_cert_mgr_version_vag= "v1.0.4"
 # this would not work with multiple masters of course 
 # Just use this setup with only one master in masters array !!!
 masters = {
-   "uk8s1m" => ["centos/7", 2, 2048, 30, "master-playbook.yml", "192.168.2.121", "192.168.60.121", "00:50:56:aa:a1:aa", "00:50:56:aa:a2:aa" ],
+   "uk8s1m" => ["generic/ubuntu2004", 2, 2048, 30, "master-playbook.yml", "192.168.2.121", "192.168.60.121", "00:50:56:aa:a1:aa", "00:50:56:aa:a2:aa" ],
 }
 
 workers = {
-   "uk8s2w" => ["centos/7", 2, 3072, 30, "worker-playbook.yml", "192.168.2.122", "192.168.60.122", "00:50:56:aa:b1:aa", "00:50:56:aa:b2:aa" ],
-   "uk8s3w" => ["centos/7", 2, 3072, 30, "worker-playbook.yml", "192.168.2.123", "192.168.60.123", "00:50:56:aa:c1:aa", "00:50:56:aa:c2:aa" ],
+   "uk8s2w" => ["generic/ubuntu2004", 2, 3072, 30, "worker-playbook.yml", "192.168.2.122", "192.168.60.122", "00:50:56:aa:b1:aa", "00:50:56:aa:b2:aa" ],
+   "uk8s3w" => ["generic/ubuntu2004", 2, 3072, 30, "worker-playbook.yml", "192.168.2.123", "192.168.60.123", "00:50:56:aa:c1:aa", "00:50:56:aa:c2:aa" ],
 }
 
 rkes = {
@@ -50,7 +50,7 @@ Vagrant.configure("2") do |config|
         esxi.guest_numvcpus = numvcpus
         esxi.guest_boot_disk_size = storage
         esxi.guest_mac_address = [ macaddr1, macaddr2 ]
-        esxi.guest_guestos = 'centos-64'
+        esxi.guest_guestos = 'ubuntu-64'
         esxi.guest_nic_type = 'vmxnet3'
         esxi.debug = 'false'
         
@@ -89,7 +89,7 @@ Vagrant.configure("2") do |config|
         esxi.guest_numvcpus = numvcpus
         esxi.guest_boot_disk_size = storage
         esxi.guest_mac_address = [ macaddr1, macaddr2 ]
-        esxi.guest_guestos = 'centos-64'
+        esxi.guest_guestos = 'ubuntu-64'
         esxi.guest_nic_type = 'vmxnet3'
         esxi.debug = 'false'
         
@@ -126,7 +126,7 @@ Vagrant.configure("2") do |config|
         esxi.guest_numvcpus = numvcpus
         esxi.guest_boot_disk_size = storage
         esxi.guest_mac_address = [ macaddr1, macaddr2 ]
-        esxi.guest_guestos = 'centos-64'
+        esxi.guest_guestos = 'ubuntu-64'
         esxi.guest_nic_type = 'vmxnet3'
         esxi.debug = 'false'
         

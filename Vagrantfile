@@ -50,7 +50,7 @@ Vagrant.configure("2") do |config|
         esxi.guest_numvcpus = numvcpus
         esxi.guest_boot_disk_size = storage
         esxi.guest_mac_address = [ macaddr1, macaddr2 ]
-        esxi.guest_guestos = 'centos7-64'
+        esxi.guest_guestos = 'centos-64'
         esxi.guest_nic_type = 'vmxnet3'
         esxi.debug = 'false'
         
@@ -89,7 +89,7 @@ Vagrant.configure("2") do |config|
         esxi.guest_numvcpus = numvcpus
         esxi.guest_boot_disk_size = storage
         esxi.guest_mac_address = [ macaddr1, macaddr2 ]
-        esxi.guest_guestos = 'centos7-64'
+        esxi.guest_guestos = 'centos-64'
         esxi.guest_nic_type = 'vmxnet3'
         esxi.debug = 'false'
         
@@ -126,7 +126,7 @@ Vagrant.configure("2") do |config|
         esxi.guest_numvcpus = numvcpus
         esxi.guest_boot_disk_size = storage
         esxi.guest_mac_address = [ macaddr1, macaddr2 ]
-        esxi.guest_guestos = 'centos7-64'
+        esxi.guest_guestos = 'centos-64'
         esxi.guest_nic_type = 'vmxnet3'
         esxi.debug = 'false'
         

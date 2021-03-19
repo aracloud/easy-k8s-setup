@@ -218,14 +218,14 @@
     - name: Add the Rancher Helm repository
       shell: helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 
-     - name: Install Rancher Server
-       community.kubernetes.helm:
-         update_repo_cache: yes
-         name: rancher
-         chart_ref: rancher-stable/rancher
-         release_namespace: cattle-system
-         release_values:
-           hostname: rancher.arahome.ml
+    - name: Install Rancher Server
+      community.kubernetes.helm:
+        update_repo_cache: yes
+        name: rancher
+        chart_ref: rancher-stable/rancher
+        release_namespace: cattle-system
+        release_values:
+          hostname: rancher.arahome.ml
 
 
   handlers:

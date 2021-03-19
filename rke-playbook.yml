@@ -34,6 +34,7 @@
         - gnupg-agent
         - software-properties-common
         - net-tools
+        - python3-pip
 
     - name: Add an apt signing key for Docker
       apt_key:

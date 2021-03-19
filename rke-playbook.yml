@@ -139,7 +139,7 @@
       openssh_keypair:
         path: ~/.ssh/id_rsa
 
-    - name: sneaky way to get the keys right
+    - name: Sneaky way to get the keys right
       shell: cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
 
     - name: RKE Create a symlink to the binary

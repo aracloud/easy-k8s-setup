@@ -18,7 +18,7 @@ rke_cert_mgr_version_vag= "v1.0.4"
 # this would not work with multiple masters of course 
 # Just use this setup with only one master in masters array !!!
 masters = {
-   "uk8s1m" => ["generic/ubuntu2004", 2, 2048, 30, "master-playbook.yml", "192.168.2.121", "192.168.60.121", "00:50:56:aa:a1:aa", "00:50:56:aa:a2:aa" ],
+   "uk8s1m" => ["generic/ubuntu2004", 2, 3072, 30, "master-playbook.yml", "192.168.2.121", "192.168.60.121", "00:50:56:aa:a1:aa", "00:50:56:aa:a2:aa" ],
 }
 
 workers = {
@@ -27,7 +27,7 @@ workers = {
 }
 
 rkes = {
-   "uk8s-rke" => ["generic/ubuntu2004", 1, 2048, 30, "rke-playbook.yml", "192.168.2.120", "192.168.60.120", "00:50:56:aa:d1:aa", "00:50:56:aa:d2:aa" ],
+   "uk8s-rke" => ["generic/ubuntu2004", 1, 3072, 30, "rke-playbook.yml", "192.168.2.120", "192.168.60.120", "00:50:56:aa:d1:aa", "00:50:56:aa:d2:aa" ],
 }
 
 Vagrant.configure("2") do |config|

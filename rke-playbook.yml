@@ -226,6 +226,8 @@
         release_namespace: cattle-system
         release_values:
           hostname: rancher.arahome.ml
+          replicas: 1
+          ingress.tls.source: rancher
 
 
   handlers:

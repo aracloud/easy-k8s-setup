@@ -3,7 +3,7 @@
 <div align="center">
     <img src="https://github.com/aracloud/easy-k8s-setup/blob/main/vagrant-k8s-esxi.png" alt="logo" width="50%" height="50%" align="left">
 </div>
-
+<br>
 ### Goal
 This setup allows to create a multi-node kubernetes cluster
 on an ESXi lab environment. 

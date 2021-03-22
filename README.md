@@ -23,7 +23,7 @@ Test with a Linux box first before you move on.
 
 Important:
 <br>
-I use DHCP on the "VM Network" and configured static IP mappings
+I use DHCP on the "VM Network" and configured static IP/MAC mappings
 for all the uk8sxx hosts I defined in Vagrantfile.
 
 Issues I faced regarding mac addresses in ESXi:
@@ -35,7 +35,7 @@ In order to automate VM's I used 00:50:56 as prefix defined in Vagrantfile.
 I installed ansible via python linux box:
 
 ```bash
-$ sudo python3 -m pip install pip
+$ sudo python3 -m pip install pip --upgrade
 $ sudo python3 -m pip install openshift
 $ sudo python3 -m pip install ansible
 

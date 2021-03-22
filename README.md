@@ -1,5 +1,9 @@
 ## Easy way to setup a Kubernetes (k8s) cluster on ESXi for lab purposes
 
+<div align="center">
+    <img src="https://github.com/aracloud/easy-k8s-setup/blob/main/vagrant-k8s-esxi.png" alt="logo">
+</div>
+
 ### Goal
 This setup allows to create a multi-node kubernetes cluster
 on an ESXi lab environment. 

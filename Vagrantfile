@@ -1,6 +1,6 @@
 # suppress parallel vm creation
 # used only for generic k8s installation uk8sXXX systems
-ENV['VAGRANT_NO_PARALLEL'] = 'no'
+#ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
 # eth0 is the default ubuntu nic (dhcp enabled)
 # add static default route for the ESXi lab second nic eth1

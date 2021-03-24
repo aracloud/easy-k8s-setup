@@ -3,7 +3,7 @@
   become: true
   tasks:
 
-    - name: Copy netplan template over
+    - name: Copy netplan first nic template over
       template:
         src: netplan.j2
         dest: /etc/netplan/01-netcfg.yaml

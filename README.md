@@ -12,7 +12,7 @@ on an ESXi lab environment.
 
 ### Prerequisites
 * ESXi host with free (ESXi) installed (https://my.vmware.com/en/web/vmware/evalcenter?p=free-esxi7)
-* Vagrant host machine uses centos linux
+* Vagrant host uses linux (centos in my case)
     * OVF tool (https://code.vmware.com/web/tool/4.4.0/ovf)
     * Vagrant (https://www.vagrantup.com/downloads.html)
     * Ansible (https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
@@ -25,16 +25,19 @@ Test with a Linux box first before you move on.
 
 Important:
 <br>
-I use DHCP on the "VM Network" and configured static IP/MAC mappings
-for all the uk8sxx hosts I defined in Vagrantfile.
+I use DHCP on the "VM Network" and configure static IP/MAC mappings
+for all the uk8sxx hosts I defined in Vagrantfile. 
+<br>
+DNS configuration hostname/upstream-DNS comes inherently with DHCP.
 
 Issues I faced regarding mac addresses in ESXi:
 <br>
-ESXi uses (as far as I understand) 00:0C:29 as vendor prefix for ESXi.
-In order to automate VM's I used 00:50:56 as prefix defined in Vagrantfile.
+ESXi uses 00:0C:29 as vendor prefix for ESXi.
+In order to automate VM's I used 00:50:56 as 
+prefix pre-defined in Vagrantfile.
 
 ### Prep Ansible via python:
-I installed ansible via python linux box:
+I installed ansible via python on the Vagrant host:
 
 ```bash
 $ sudo python3 -m pip install pip --upgrade

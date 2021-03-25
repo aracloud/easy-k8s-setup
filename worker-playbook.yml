@@ -3,7 +3,7 @@
   become: true
   tasks:
 
-    - name: Copy netplan first nic template over
+    - name: Copy netplan first nic template over (DNS hack only)
       template:
         src: netplan.j2
         dest: /etc/netplan/01-netcfg.yaml
@@ -28,6 +28,12 @@
 
     - name: Disable ufw firewall
       command: ufw disable
+
+    - name: Add DNS resolution for rancher
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          {{ rke_rancher_hostip }}  {{ rke_rancher_hostname }}
 
     - name: Install packages that allow apt to be used over HTTPS
       apt:
@@ -83,6 +89,7 @@
     - name: Disable swap
       command: swapoff -a
       when: ansible_swaptotal_mb > 0
+
 
 
 #     ### Start installing K8s worker

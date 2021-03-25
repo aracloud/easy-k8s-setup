@@ -2,8 +2,8 @@
 # used only for generic k8s installation uk8sXXX systems
 #ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
-# eth0 is the default ubuntu nic (dhcp enabled)
-# add static default route for the ESXi lab second nic eth1
+# eth0 is the default ubuntu nic (dhcp enabled, data plane mgmt access)
+# eth1 add static default route for the ESXi lab second nic eth1 (control plane)
 box_eth1_gateway = "192.168.60.67"
 
 # k8s pod network cidr (master-playbook)
@@ -16,6 +16,7 @@ rke_config_file_vag= "rancher-cluster.yml"
 rke_cluster_kube_config_vag= "kube_config_rancher-cluster.yml"
 rke_cert_mgr_version_vag= "v1.0.4"
 rke_rancher_hostname_vag= "rancher.arahome.ml"
+rke_rancher_hostip_vag= "192.168.60.120"
 
 # this would not work with multiple masters of course 
 # Just use this setup with only one master in masters array !!!
@@ -66,6 +67,8 @@ Vagrant.configure("2") do |config|
                 gateway_ip: box_eth1_gateway,
                 first_master: name,
                 pod_net_cidr: pod_network_cidr,
+                rke_rancher_hostname: rke_rancher_hostname_vag,
+                rke_rancher_hostip: rke_rancher_hostip_vag,
             }
       end #end ansible provision
 
@@ -103,6 +106,8 @@ Vagrant.configure("2") do |config|
                 node_ip1: nodeip1,
                 node_ip2: nodeip2,
                 gateway_ip: box_eth1_gateway,
+                rke_rancher_hostname: rke_rancher_hostname_vag,
+                rke_rancher_hostip: rke_rancher_hostip_vag,
             }
       end #end ansible provision
 

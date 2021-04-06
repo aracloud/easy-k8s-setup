@@ -14,6 +14,7 @@ os_nodes= "generic/ubuntu2004"
 os_nodes_master_pb= "master-playbook-ubuntu.yml"
 os_nodes_worker_pb= "worker-playbook-ubuntu.yml"
 os_rke= "generic/ubuntu2004"
+os_rke_pb= "rke-playbook.yml"
 
 # RKE vars 
 rke_version_vag= "v1.2.4"
@@ -36,7 +37,7 @@ workers = {
 }
 
 rkes = {
-   "uk8s-rke" => [os_rke, 1, 4096, 30, "rke-playbook.yml", "192.168.2.120", "192.168.60.120", "00:50:56:aa:d1:aa", "00:50:56:aa:d2:aa" ],
+   "uk8s-rke" => [os_rke, 1, 4096, 30, os_rke_pb, "192.168.2.120", "192.168.60.120", "00:50:56:aa:d1:aa", "00:50:56:aa:d2:aa" ],
 }
 
 Vagrant.configure("2") do |config|

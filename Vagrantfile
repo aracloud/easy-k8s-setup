@@ -6,8 +6,14 @@
 # eth1 add static default route for the ESXi lab second nic eth1 (control plane)
 box_eth1_gateway = "192.168.60.67"
 
-# k8s pod network cidr (master-playbook)
+# k8s pod network cidr (master-playbook for native k8s installation)
 pod_network_cidr= "10.244.0.0/16"
+
+#os_nodes= "centos/7"
+os_nodes= "generic/ubuntu2004"
+os_nodes_master_pb= "master-playbook-ubuntu.yml"
+os_nodes_worker_pb= "worker-playbook-ubuntu.yml"
+os_rke= "generic/ubuntu2004"
 
 # RKE vars 
 rke_version_vag= "v1.2.4"
@@ -21,16 +27,16 @@ rke_rancher_hostip_vag= "192.168.60.120"
 # this would not work with multiple masters of course 
 # Just use this setup with only one master in masters array !!!
 masters = {
-   "uk8s1m" => ["generic/ubuntu2004", 2, 3072, 30, "master-playbook.yml", "192.168.2.121", "192.168.60.121", "00:50:56:aa:a1:aa", "00:50:56:aa:a2:aa" ],
+   "uk8s1m" => [os_nodes, 2, 3072, 30, os_nodes_master_pb, "192.168.2.121", "192.168.60.121", "00:50:56:aa:a1:aa", "00:50:56:aa:a2:aa" ],
 }
 
 workers = {
-   "uk8s2w" => ["generic/ubuntu2004", 2, 3072, 30, "worker-playbook.yml", "192.168.2.122", "192.168.60.122", "00:50:56:aa:b1:aa", "00:50:56:aa:b2:aa" ],
-   "uk8s3w" => ["generic/ubuntu2004", 2, 3072, 30, "worker-playbook.yml", "192.168.2.123", "192.168.60.123", "00:50:56:aa:c1:aa", "00:50:56:aa:c2:aa" ],
+   "uk8s2w" => [os_nodes, 2, 3072, 30, os_nodes_worker_pb, "192.168.2.122", "192.168.60.122", "00:50:56:aa:b1:aa", "00:50:56:aa:b2:aa" ],
+   "uk8s3w" => [os_nodes, 2, 3072, 30, os_nodes_worker_pb, "192.168.2.123", "192.168.60.123", "00:50:56:aa:c1:aa", "00:50:56:aa:c2:aa" ],
 }
 
 rkes = {
-   "uk8s-rke" => ["generic/ubuntu2004", 1, 4096, 30, "rke-playbook.yml", "192.168.2.120", "192.168.60.120", "00:50:56:aa:d1:aa", "00:50:56:aa:d2:aa" ],
+   "uk8s-rke" => [os_rke, 1, 4096, 30, "rke-playbook.yml", "192.168.2.120", "192.168.60.120", "00:50:56:aa:d1:aa", "00:50:56:aa:d2:aa" ],
 }
 
 Vagrant.configure("2") do |config|

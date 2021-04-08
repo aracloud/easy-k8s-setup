@@ -34,6 +34,7 @@
         - gnupg-agent
         - software-properties-common
         - net-tools
+        - resolvconf
         - python3-pip
 
     - name: Sneaky way to install openshift module

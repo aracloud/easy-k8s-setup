@@ -32,7 +32,7 @@
       command: ufw disable
 
     - name: Set timezone
-      community.general.timezone:
+      timezone:
         name: Europe/Zurich
 
     - name: Add DNS resolution for rancher
@@ -55,6 +55,7 @@
         - software-properties-common
         - net-tools
         - resolvconf
+        - ntpdate
 
     - name: Add DNS resolution for local dns server
       blockinfile:

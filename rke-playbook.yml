@@ -3,6 +3,15 @@
   become: true
   tasks:
 
+    - name: Copy netplan first nic template over (DNS hack only)
+      template:
+        src: netplan.j2
+        dest: /etc/netplan/01-netcfg.yaml
+        owner: root
+        group: root
+        mode: 0644
+        backup: yes
+
     - name: Configure netplan second nic
       blockinfile:
         path: /etc/netplan/01-netcfg.yaml
@@ -13,14 +22,22 @@
                 optional: true
                 addresses: [{{ node_ip2 }}/24]
                 gateway4: {{ gateway_ip }}
+                nameservers:
+                  addresses: [{{ dns_ip }}]
 
     - name: Apply netplan again
       command: netplan apply
 
     - name: Disable ufw firewall
       command: ufw disable
-      register: ufw_out
-      changed_when: "'disabled on system startup' not in ufw_out.stdout"
+      #register: ufw_out
+      #changed_when: "'disabled on system startup' not in ufw_out.stdout"
+
+    - name: Add DNS resolution for rancher
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          {{ rke_rancher_hostip }}  {{ rke_rancher_hostname }}
 
     - name: Install packages that allow apt to be used over HTTPS
       apt:

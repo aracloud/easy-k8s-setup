@@ -5,7 +5,7 @@
 
     - name: Copy netplan first nic template over (DNS hack only)
       template:
-        src: netplan.j2
+        src: files/netplan.j2
         dest: /etc/netplan/01-netcfg.yaml
         owner: root
         group: root

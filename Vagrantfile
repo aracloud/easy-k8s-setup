@@ -163,6 +163,7 @@ Vagrant.configure("2") do |config|
                 rke_cluster_kube_config: rke_cluster_kube_config_vag,
                 rke_cert_mgr_version: rke_cert_mgr_version_vag,
                 rke_rancher_hostname: rke_rancher_hostname_vag,
+                rke_rancher_hostip: rke_rancher_hostip_vag,
             }
       end #end ansible provision
 

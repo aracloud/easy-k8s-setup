@@ -4,7 +4,7 @@
   tasks:
 
     - name: Copy netplan first nic template over (DNS hack only)
-      template:
+      copy:
         src: files/netplan.j2
         dest: /etc/netplan/01-netcfg.yaml
         owner: root
@@ -60,7 +60,7 @@
         - python3-pip
 
     - name: Copy ntpdate for cron
-      template:
+      copy:
         src: files/cron.ntpdate
         dest: /etc/cron.d/cron.ntpdate
         owner: root

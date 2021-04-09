@@ -58,6 +58,11 @@
         block: |
           nameserver {{ dns_ip }}
 
+    - name: Active DNS resolution for local dns server
+      shell: |
+        resolvconf --enable-updates
+        resolvconf -u
+
     - name: Add an apt signing key for Docker
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg

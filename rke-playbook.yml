@@ -37,6 +37,17 @@
         - resolvconf
         - python3-pip
 
+    - name: Add DNS resolution for local dns server
+      blockinfile:
+        path: /etc/resolvconf/resolv.conf.d/head
+        block: |
+          nameserver {{ dns_ip }}
+
+    - name: Active DNS resolution for local dns server
+      shell: |
+        resolvconf --enable-updates
+        resolvconf -u
+
     - name: Sneaky way to install openshift module
       shell: |
         python3 -m pip install pip --upgrade

@@ -247,7 +247,7 @@
         chart_ref: rancher-stable/rancher
         release_namespace: cattle-system
         release_values:
-          hostname: {{ rke_rancher_hostname }}
+          hostname: rancher.arahome.ml
           replicas: 1
           ingress.tls.source: rancher
 

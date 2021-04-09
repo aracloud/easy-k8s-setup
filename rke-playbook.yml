@@ -5,7 +5,7 @@
 
     - name: Copy netplan first nic template over (DNS hack only)
       copy:
-        src: files/netplan.j2
+        src: netplan.j2
         dest: /etc/netplan/01-netcfg.yaml
         owner: root
         group: root
@@ -61,7 +61,7 @@
 
     - name: Copy ntpdate for cron
       copy:
-        src: files/cron.ntpdate
+        src: cron.ntpdate
         dest: /etc/cron.d/cron.ntpdate
         owner: root
         group: root

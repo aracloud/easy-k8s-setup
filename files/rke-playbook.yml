@@ -59,6 +59,14 @@
         - ntpdate
         - python3-pip
 
+    - name: Copy ntpdate for cron
+      template:
+        src: files/cron.ntpdate
+        dest: /etc/cron.d/cron.ntpdate
+        owner: root
+        group: root
+        mode: 0644
+
     - name: Add DNS resolution for local dns server
       blockinfile:
         path: /etc/resolvconf/resolv.conf.d/head

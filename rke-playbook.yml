@@ -33,6 +33,10 @@
       #register: ufw_out
       #changed_when: "'disabled on system startup' not in ufw_out.stdout"
 
+    - name: Set timezone
+      community.general.timezone:
+        name: Europe/Zurich
+
     - name: Add DNS resolution for rancher
       blockinfile:
         path: /etc/hosts

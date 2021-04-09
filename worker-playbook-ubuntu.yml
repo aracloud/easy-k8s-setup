@@ -31,6 +31,10 @@
     - name: Disable ufw firewall
       command: ufw disable
 
+    - name: Set timezone
+      community.general.timezone:
+        name: Europe/Zurich
+
     - name: Add DNS resolution for rancher
       blockinfile:
         path: /etc/hosts

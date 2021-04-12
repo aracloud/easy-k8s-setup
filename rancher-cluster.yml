@@ -15,3 +15,9 @@ ingress:
   provider: nginx
   options:
     use-forwarded-headers: "true"
+
+# Required for DNS forwarding 
+dns:
+  provider: coredns
+  upstreamnameservers:
+  - 192.168.2.6

@@ -11,6 +11,9 @@
             devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st|sda)[0-9]*"
           }
 
+    - name: Restart multipathd
+      command: service multipathd restart
+
     - name: Copy netplan first nic template over (DNS hack only)
       copy:
         src: netplan.j2

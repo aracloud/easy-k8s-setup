@@ -257,9 +257,9 @@
     - name: Wait for certmanager to be ready
       command: "kubectl -n cert-manager rollout status deploy/cert-manager"
 
-    - name: Wait 20 seconds for cert-manager to properly run
+    - name: Wait 30 seconds for cert-manager to properly run
       pause:
-        seconds: "20"
+        seconds: "30"
 
     - name: Add the Rancher Helm repository
       shell: helm repo add rancher-stable https://releases.rancher.com/server-charts/stable

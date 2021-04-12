@@ -3,6 +3,14 @@
   become: true
   tasks:
 
+    - name: Multipath hack for Ubuntu 20.04 (disable several devices)
+      blockinfile:
+        path: /etc/multipath.conf
+        block: |
+          blacklist {
+            devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st|sda)[0-9]*"
+          }
+
     - name: Copy netplan first nic template over (DNS hack only)
       copy:
         src: netplan.j2

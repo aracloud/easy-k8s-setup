@@ -99,6 +99,9 @@
     - name: set time
       command: ntpdate ch.pool.ntp.org
 
+    - name: restart syslog (time hack)
+      command: service syslog restart
+
     - name: Add an apt signing key for Docker
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg

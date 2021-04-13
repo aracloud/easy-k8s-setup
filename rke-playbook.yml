@@ -101,6 +101,9 @@
     - name: set time
       command: ntpdate ch.pool.ntp.org
 
+    - name: restart syslog (time hack)
+      command: service syslog restart
+
     - name: Sneaky way to install openshift module
       shell: |
         python3 -m pip install pip --upgrade

@@ -147,7 +147,7 @@
       command: swapoff -a
       when: ansible_swaptotal_mb > 0
 
-    - name: Add apt signing key for Kubernetes
+    - name: Add apt signing key for google packages
       apt_key:
         url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
 
@@ -156,15 +156,14 @@
         repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
         filename: kubernetes.list
 
-    - name: Install Kubernetes binaries
+    # kubeadm and kubelet not required
+    - name: Install Kubernetes binaries (kubectl only)
       apt: 
         name: "{{ packages }}"
         update_cache: yes
       vars:
         packages:
           - kubectl
-    #       - kubeadm 
-    #       - kubelet 
 
     - name: Add an apt signing key for Helm
       apt_key:

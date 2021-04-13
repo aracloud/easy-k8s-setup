@@ -79,6 +79,17 @@
         - ntpdate
         - python3-pip
 
+    # - name: Add DNS resolution for local dns server
+    #   blockinfile:
+    #     path: /etc/resolvconf/resolv.conf.d/head
+    #     block: |
+    #       nameserver {{ dns_ip }}
+
+    # - name: Active DNS resolution for local dns server
+    #   shell: |
+    #     resolvconf --enable-updates
+    #     resolvconf -u
+
     - name: Copy ntpdate for cron
       copy:
         src: cron.ntpdate
@@ -87,16 +98,8 @@
         group: root
         mode: 0644
 
-    - name: Add DNS resolution for local dns server
-      blockinfile:
-        path: /etc/resolvconf/resolv.conf.d/head
-        block: |
-          nameserver {{ dns_ip }}
-
-    - name: Active DNS resolution for local dns server
-      shell: |
-        resolvconf --enable-updates
-        resolvconf -u
+    - name: set time
+      command: ntpdate ch.pool.ntp.org
 
     - name: Sneaky way to install openshift module
       shell: |

@@ -14,11 +14,11 @@
     - name: Restart multipathd
       command: service multipathd restart
 
-    - name: Ensure SELinux is set to enforcing mode
+    - name: Reconfigure DNS settings for resolvd
       lineinfile:
         path: /etc/systemd/resolved.conf
         regexp: '^DNS='
-        line: DNS=192.168.2.6
+        line: DNS={{ dns_ip }}
 
     - name: Restart systemd-resolved
       command: service systemd-resolved restart

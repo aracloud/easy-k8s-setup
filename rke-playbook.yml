@@ -14,6 +14,15 @@
     - name: Restart multipathd
       command: service multipathd restart
 
+    - name: Ensure SELinux is set to enforcing mode
+      lineinfile:
+        path: /etc/systemd/resolved.conf
+        regexp: '^DNS='
+        line: DNS=192.168.2.6
+
+    - name: Restart systemd-resolved
+      command: service systemd-resolved restart
+
     - name: Copy netplan first nic template over (DNS hack only)
       copy:
         src: netplan.j2

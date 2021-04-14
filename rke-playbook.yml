@@ -11,8 +11,8 @@
             devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st|sda)[0-9]*"
           }
 
-    # - name: Restart multipathd
-    #   command: service multipathd restart
+    - name: Restart multipathd
+      command: service multipathd restart
 
     # - name: Reconfigure DNS settings for resolvd
     #   lineinfile:

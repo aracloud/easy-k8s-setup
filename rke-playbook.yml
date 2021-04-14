@@ -11,17 +11,17 @@
             devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st|sda)[0-9]*"
           }
 
-    - name: Restart multipathd
-      command: service multipathd restart
+    # - name: Restart multipathd
+    #   command: service multipathd restart
 
-    - name: Reconfigure DNS settings for resolvd
-      lineinfile:
-        path: /etc/systemd/resolved.conf
-        regexp: '^DNS='
-        line: DNS={{ dns_ip }}
+    # - name: Reconfigure DNS settings for resolvd
+    #   lineinfile:
+    #     path: /etc/systemd/resolved.conf
+    #     regexp: '^DNS='
+    #     line: DNS={{ dns_ip }}
 
-    - name: Restart systemd-resolved
-      command: service systemd-resolved restart
+    # - name: Restart systemd-resolved
+    #   command: service systemd-resolved restart
 
     - name: Copy netplan first nic template over (DNS hack only)
       copy:
@@ -79,16 +79,16 @@
         - ntpdate
         - python3-pip
 
-    - name: Add DNS resolution for local dns server
-      blockinfile:
-        path: /etc/resolvconf/resolv.conf.d/head
-        block: |
-          nameserver {{ dns_ip }}
+    # - name: Add DNS resolution for local dns server
+    #   blockinfile:
+    #     path: /etc/resolvconf/resolv.conf.d/head
+    #     block: |
+    #       nameserver {{ dns_ip }}
 
-    - name: Active DNS resolution for local dns server
-      shell: |
-        resolvconf --enable-updates
-        resolvconf -u
+    # - name: Active DNS resolution for local dns server
+    #   shell: |
+    #     resolvconf --enable-updates
+    #     resolvconf -u
 
     - name: Copy ntpdate for cron
       copy:

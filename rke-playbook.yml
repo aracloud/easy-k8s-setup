@@ -14,14 +14,14 @@
     - name: Restart multipathd
       command: service multipathd restart
 
-    # - name: Reconfigure DNS settings for resolvd
-    #   lineinfile:
-    #     path: /etc/systemd/resolved.conf
-    #     regexp: '^DNS='
-    #     line: DNS={{ dns_ip_google }}
+    - name: Reconfigure DNS settings for resolvd
+      lineinfile:
+        path: /etc/systemd/resolved.conf
+        regexp: '^DNS='
+        line: DNS={{ dns_ip_google }}
 
-    # - name: Restart systemd-resolved
-    #   command: service systemd-resolved restart
+    - name: Restart systemd-resolved
+      command: service systemd-resolved restart
 
     - name: Copy netplan first nic template over (DNS hack only)
       copy:

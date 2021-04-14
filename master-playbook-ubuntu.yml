@@ -77,16 +77,16 @@
         - resolvconf
         - ntpdate
 
-    # - name: Add DNS resolution for local dns server
-    #   blockinfile:
-    #     path: /etc/resolvconf/resolv.conf.d/head
-    #     block: |
-    #       nameserver {{ dns_ip }}
+    - name: Add DNS resolution for local dns server
+      blockinfile:
+        path: /etc/resolvconf/resolv.conf.d/head
+        block: |
+          nameserver {{ dns_ip }}
 
-    # - name: Active DNS resolution for local dns server
-    #   shell: |
-    #     resolvconf --enable-updates
-    #     resolvconf -u
+    - name: Active DNS resolution for local dns server
+      shell: |
+        resolvconf --enable-updates
+        resolvconf -u
 
     - name: Copy ntpdate for cron
       copy:

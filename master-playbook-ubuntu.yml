@@ -18,19 +18,21 @@
       lineinfile:
         path: /etc/systemd/resolved.conf
         regexp: '^DNS='
-        line: DNS={{ dns_ip_google }}
+        line: DNS={{ dns_ip_resolvd }}
 
     - name: Restart systemd-resolved
       command: service systemd-resolved restart
 
     - name: Copy netplan first nic template over (DNS hack only)
-      copy:
+      template:
         src: netplan.j2
         dest: /etc/netplan/01-netcfg.yaml
         owner: root
         group: root
         mode: 0644
         backup: yes
+        vars:
+          myTemplateVariable: {{ node_ip1 }}
 
     - name: Configure netplan second nic
       blockinfile:

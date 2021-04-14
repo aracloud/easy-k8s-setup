@@ -42,8 +42,9 @@
                 optional: true
                 addresses: [{{ node_ip2 }}/24]
                 gateway4: {{ gateway_ip }}
-                nameservers:
-                  addresses: [{{ dns_ip_local }}]
+
+# nameservers:
+#   addresses: [{{ dns_ip_local }}]
 
     - name: Apply netplan again
       command: netplan apply

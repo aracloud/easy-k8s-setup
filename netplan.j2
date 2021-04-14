@@ -7,3 +7,9 @@ network:
       dhcp6: false
       optional: true
       addresses: [{{ node_ip1 }}/24]
+    eth1:
+      dhcp4: false
+      dhcp6: false
+      optional: true
+      addresses: [{{ node_ip2 }}/24]
+      gateway4: {{ gateway_ip }}

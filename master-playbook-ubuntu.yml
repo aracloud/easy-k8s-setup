@@ -18,7 +18,7 @@
       lineinfile:
         path: /etc/systemd/resolved.conf
         regexp: '^DNS='
-        line: DNS={{ dns_ip }}
+        line: DNS={{ dns_ip_google }}
 
     - name: Restart systemd-resolved
       command: service systemd-resolved restart
@@ -43,7 +43,7 @@
                 addresses: [{{ node_ip2 }}/24]
                 gateway4: {{ gateway_ip }}
                 nameservers:
-                  addresses: [{{ dns_ip }}]
+                  addresses: [{{ dns_ip_local }}]
 
     - name: Apply netplan again
       command: netplan apply
@@ -81,7 +81,7 @@
       blockinfile:
         path: /etc/resolvconf/resolv.conf.d/head
         block: |
-          nameserver {{ dns_ip }}
+          nameserver {{ dns_ip_local }}
 
     - name: Active DNS resolution for local dns server
       shell: |

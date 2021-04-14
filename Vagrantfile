@@ -5,7 +5,8 @@
 # eth0 is the default ubuntu nic (dhcp enabled, data plane mgmt access)
 # eth1 add static default route for the ESXi lab second nic eth1 (control plane)
 box_eth1_gateway = "192.168.60.67"
-box_dns = "192.168.2.6"
+box_dns_local = "192.168.2.6"
+box_dns_google = "8.8.8.8 8.8.4.4"
 
 # k8s pod network cidr (master-playbook for native k8s installation)
 pod_network_cidr= "10.244.0.0/16"
@@ -73,7 +74,8 @@ Vagrant.configure("2") do |config|
                 node_ip1: nodeip1,
                 node_ip2: nodeip2,
                 gateway_ip: box_eth1_gateway,
-                dns_ip: box_dns,
+                dns_ip_local: box_dns_local,
+                dns_ip_google: box_dns_google,
                 first_master: name,
                 pod_net_cidr: pod_network_cidr,
                 rke_rancher_hostname: rke_rancher_hostname_vag,
@@ -115,7 +117,8 @@ Vagrant.configure("2") do |config|
                 node_ip1: nodeip1,
                 node_ip2: nodeip2,
                 gateway_ip: box_eth1_gateway,
-                dns_ip: box_dns,
+                dns_ip_local: box_dns_local,
+                dns_ip_google: box_dns_google,
                 rke_rancher_hostname: rke_rancher_hostname_vag,
                 rke_rancher_hostip: rke_rancher_hostip_vag,
             }
@@ -156,7 +159,8 @@ Vagrant.configure("2") do |config|
                 node_ip1: nodeip1,
                 node_ip2: nodeip2,
                 gateway_ip: box_eth1_gateway,
-                dns_ip: box_dns,
+                dns_ip_local: box_dns_local,
+                dns_ip_google: box_dns_google,
                 rke_version: rke_version_vag,
                 rke_install_dir: rke_install_dir_vag,
                 rke_cluster_config: rke_config_file_vag,

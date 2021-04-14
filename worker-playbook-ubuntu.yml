@@ -32,7 +32,7 @@
         mode: 0644
         backup: yes
         vars:
-          myTemplateVariable: {{ node_ip1 }}
+          myTemplateVariable: "{{ node_ip1 }}"
 
     - name: Configure netplan second nic
       blockinfile:

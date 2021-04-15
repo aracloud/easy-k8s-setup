@@ -66,16 +66,16 @@
         - ntpdate
         - python3-pip
 
-    # - name: Add DNS resolution for local dns server
-    #   blockinfile:
-    #     path: /etc/resolvconf/resolv.conf.d/head
-    #     block: |
-    #       nameserver {{ dns_ip_local }}
+    - name: Add DNS resolution for local dns server
+      blockinfile:
+        path: /etc/resolvconf/resolv.conf.d/head
+        block: |
+          nameserver {{ dns_ip_local }}
 
-    # - name: Active DNS resolution for local dns server
-    #   shell: |
-    #     resolvconf --enable-updates
-    #     resolvconf -u
+    - name: Active DNS resolution for local dns server
+      shell: |
+        resolvconf --enable-updates
+        resolvconf -u
 
     - name: Copy ntpdate for cron
       copy:

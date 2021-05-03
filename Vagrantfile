@@ -83,9 +83,7 @@ Vagrant.configure("2") do |config|
                 rke_rancher_hostip: rke_rancher_hostip_vag,
             }
       end #end ansible provision
-
     end #end of machine
-
   end #end of each loop
 
   # building worker nodes
@@ -124,9 +122,7 @@ Vagrant.configure("2") do |config|
                 rke_rancher_hostip: rke_rancher_hostip_vag,
             }
       end #end ansible provision
-
     end #end of machine
-
   end #end of each loop
 
   # building rke nodes
@@ -171,9 +167,7 @@ Vagrant.configure("2") do |config|
                 rke_rancher_hostip: rke_rancher_hostip_vag,
             }
       end #end ansible provision
-
     end #end of machine
-
   end #end of each loop
 
 end #end of vagrant

@@ -16,6 +16,9 @@ services:
 #  options:
 #    use-forwarded-headers: "true"
 
+ingress:
+provider: none
+
 # Required for DNS forwarding 
 # dns:
 #   provider: coredns

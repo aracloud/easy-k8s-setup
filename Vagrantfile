@@ -25,7 +25,7 @@ rke_install_dir_vag= "/usr/local/bin"
 rke_config_file_vag= "rancher-cluster.yml"
 rke_cluster_kube_config_vag= "kube_config_rancher-cluster.yml"
 rke_cert_mgr_version_vag= "v1.0.4"
-rke_rancher_hostname_vag= "rancher.ndee.ch"
+rke_rancher_hostname_vag= "rancher.arahome.ml"
 rke_rancher_hostip_vag= "192.168.60.120"
 
 # this would not work with multiple masters of course 

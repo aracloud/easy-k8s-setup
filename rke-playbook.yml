@@ -274,8 +274,9 @@
         release_values:
           hostname: "{{ rke_rancher_hostname }}"
           replicas: 1
-          ingress.tls.source: letsEncrypt
-          letsEncrypt.email: arquint@gmx.net
+          ingress.tls.source: rancher
+          #ingress.tls.source: letsEncrypt
+          #letsEncrypt.email: arquint@gmx.net
 
 
   handlers:
